@@ -99,6 +99,51 @@
 <footer>
     © 2025 Cyberscout CI — Tous droits réservés
 </footer>
+<!-- Section de vérification des certificats -->
+<section id="verification" class="section">
+    <h2>🔎 Vérification des certificats</h2>
+    <p>Entrez le numéro de certificat pour vérifier son authenticité.</p>
 
+    <form id="verifForm">
+        <input type="text" id="certNumber" placeholder="Ex : CSCI-2025-000123" 
+               style="padding:10px; width:80%; max-width:350px; border-radius:5px; border:none;">
+        <button type="button" onclick="verifierCertificat()" 
+                style="padding:10px 20px; border:none; border-radius:5px; background:#1a73e8; color:white;">
+            Vérifier
+        </button>
+    </form>
+
+    <p id="resultat" style="margin-top:20px; font-size:18px; font-weight:bold;"></p>
+</section>
+
+<script>
+    // ***** Exemple simple en local *****
+    // Plus tard, on connectera à une base de données officielle
+
+    const certificatsValides = [
+        "CSCI-2025-000001",
+        "CSCI-2025-000002",
+        "CSCI-2025-000003"
+    ];
+
+    function verifierCertificat() {
+        const numero = document.getElementById("certNumber").value.trim();
+        const resultat = document.getElementById("resultat");
+
+        if (numero === "") {
+            resultat.style.color = "yellow";
+            resultat.textContent = "⚠️ Veuillez entrer un numéro de certificat.";
+            return;
+        }
+
+        if (certificatsValides.includes(numero)) {
+            resultat.style.color = "lightgreen";
+            resultat.textContent = "✔️ Certificat authentique — valide et reconnu.";
+        } else {
+            resultat.style.color = "red";
+            resultat.textContent = "❌ Certificat introuvable ou non valide.";
+        }
+    }
+</script>
 </body>
 </html>
